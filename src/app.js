@@ -15,6 +15,7 @@ const createNonLexicalWords = require('../resources/create-non-lexical-words')
 
 /**
  * Initialize the Express app
+ *
  * @return {object} The initialized Express app
  * */
 module.exports = function lexicalDensityApp () {

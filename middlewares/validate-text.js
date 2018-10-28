@@ -1,7 +1,7 @@
 'use strict'
 
 /**
- * Middleware that validates the input text length
+ * Middleware that validates the provided input text
  *
  * @param {Object} req  Instance of http.ServerRequest
  * @param {Object} res  Instance of http.ServerResponse

@@ -4,6 +4,7 @@ const Promise = require('bluebird')
 const getMongoConnection = require('../libs/mongodb-client')
 
 /**
+ * Controller to store new non lexical words on DB
  *
  * @param {Object} req  Instance of http.ServerRequest
  * @param {Object} res  Instance of http.ServerResponse

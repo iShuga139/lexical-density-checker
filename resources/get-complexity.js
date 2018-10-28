@@ -59,7 +59,7 @@ function getLexicalDensity (text, nonLexicalWords, mode) {
 }
 
 /**
- * Returns the lexical density
+ * Returns the lexical density of the provided text
  *
  * @param {Object} req  Instance of http.ServerRequest
  * @param {Object} res  Instance of http.ServerResponse

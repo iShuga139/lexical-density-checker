@@ -5,6 +5,10 @@ const Promise = require('bluebird')
 const getMongoConnection = require('../libs/mongodb-client')
 const nonLexicalWords = require('../config/non-lexical-words')
 
+/**
+ * Identify if there are missing words from the initial appendix
+ *
+ */
 module.exports = () => {
   return Promise.using(getMongoConnection(), (conn) => {
     return nonLexicalWords.forEach((word) => {
