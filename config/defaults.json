@@ -1,0 +1,13 @@
+{
+  "server": {
+    "port": 3000
+  },
+  "tls": {
+    "enabled": false,
+    "keyPath": "/temp/vai/ssl/vai.key",
+    "certPath": "/temp/vai/ssl/vai.crt"
+  },
+  "database": {
+    "url": "mongodb://localhost:27017/lexical-density"
+  }
+}
