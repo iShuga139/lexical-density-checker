@@ -35,7 +35,7 @@ function getLexicalDensity (text, nonLexicalWords, mode) {
   let lexicalDensityBySentece = 0
   let lexicalDensityOfSentences = []
 
-  const isVerbose = mode === 'verbose'
+  const isVerbose = (mode.toLowerCase() === 'verbose')
   const totalSent = tokenizer.getSentences().length
 
   for (let count = 0; count < totalSent; count++) {
@@ -66,7 +66,8 @@ function getLexicalDensity (text, nonLexicalWords, mode) {
  * @returns
  */
 module.exports = function getComplexity (req, res) {
-  const { mode, text } = req.query
+  const mode = req.query.mode || ''
+  const text = req.query.text || req.body.text
 
   return Promise.using(getMongoConnection(), (conn) => {
     return conn
@@ -76,7 +77,7 @@ module.exports = function getComplexity (req, res) {
       .toArray((err, nonLexicalWords) => {
         if (err) throw err
 
-        const lowCaseWords = nonLexicalWords.map((word) => word.toLowerCase())
+        const lowCaseWords = nonLexicalWords.map(({ word }) => word.toLowerCase())
         const lexicalDensity = getLexicalDensity(text, lowCaseWords, mode)
 
         return res

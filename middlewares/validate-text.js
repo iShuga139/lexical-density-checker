@@ -16,13 +16,13 @@ function validateText (req, res, next) {
     return next()
   }
 
-  const text = req.query.text || ''
+  const text = req.query.text || req.body.text || ''
   const words = text.split(' ')
 
   if (!text || text.length > 1000 || words.length > 100) {
     const newError = {
       error: 'Unprocessable Entity',
-      message: 'Invalid text input'
+      message: 'Invalid input text'
     }
 
     return res.status(422).json(newError)

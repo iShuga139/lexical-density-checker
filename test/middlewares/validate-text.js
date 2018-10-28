@@ -40,7 +40,8 @@ describe('Validate text options middleware', () => {
       const req = {
         method: 'GET',
         path: '/complexity',
-        query: {}
+        query: {},
+        body: {}
       }
       const jsonSpy = sandbox.spy()
       const statusStub = sandbox.stub().returns({ json: jsonSpy })
@@ -48,7 +49,7 @@ describe('Validate text options middleware', () => {
 
       const outputError = {
         error: 'Unprocessable Entity',
-        message: 'Invalid text input'
+        message: 'Invalid input text'
       }
 
       validaText(req, resStub, undefined)
@@ -69,7 +70,7 @@ describe('Validate text options middleware', () => {
 
       const outputError = {
         error: 'Unprocessable Entity',
-        message: 'Invalid text input'
+        message: 'Invalid input text'
       }
 
       validaText(req, resStub, undefined)

@@ -50,97 +50,136 @@ describe(`GET ${apiEndpointPath}`, () => {
     sandbox.resetHistory()
   })
 
-  it('should return a HTTP 422 response', (done) => {
-    const exprectedError = {
-      error: 'Unprocessable Entity',
-      message: 'Invalid text input'
-    }
+  context('when is a valid response', () => {
+    it('should return the lexical density', (done) => {
+      results = [{
+        _id: 1321, word: 'the'
+      }, {
+        _id: 432, word: 'to'
+      }]
 
-    request(app)
-      .get(apiEndpointPath)
-      .set('Accept', 'application/json')
-      .expect(422, exprectedError)
-      .end((err) => {
-        if (err) {
-          return done(err)
+      const queryString = '?text=Kim loves going  to the  cinema'
+      const url = `${apiEndpointPath + queryString}`
+
+      const expectedResponse = {
+        data: {
+          overall_ld: '0.67'
         }
-
-        return done()
-      })
-  })
-
-  it('should return a response with lexical density', (done) => {
-    results = ['to', 'the']
-
-    const queryString = '?text=Kim loves going  to the  cinema'
-    const url = `${apiEndpointPath + queryString}`
-
-    const expectedResponse = {
-      data: {
-        overall_ld: '0.67'
       }
-    }
 
-    request(app)
-      .get(url)
-      .set('Accept', 'application/json')
-      .expect(200, expectedResponse)
-      .end((err) => {
-        if (err) {
-          return done(err)
+      request(app)
+        .get(url)
+        .set('Accept', 'application/json')
+        .expect(200, expectedResponse)
+        .end((err) => {
+          if (err) {
+            return done(err)
+          }
+
+          return done()
+        })
+    })
+
+    it('should return the lexical density for text in form-urlencoded format', (done) => {
+      results = [{
+        _id: 1321, word: 'the'
+      }, {
+        _id: 432, word: 'to'
+      }]
+
+      const expectedResponse = {
+        data: {
+          overall_ld: '0.67'
         }
-
-        return done()
-      })
-  })
-
-  it('should return a response with lexical density and for each sentence', (done) => {
-    results = ['to', 'the']
-
-    const queryString = '?mode=verbose&text=Kim loves going  to the  cinema'
-    const url = `${apiEndpointPath + queryString}`
-
-    const expectedResponse = {
-      data: {
-        sentence_ld: ['0.67'],
-        overall_ld: '0.67'
       }
-    }
 
-    request(app)
-      .get(url)
-      .set('Accept', 'application/json')
-      .expect(200, expectedResponse)
-      .end((err) => {
-        if (err) {
-          return done(err)
+      request(app)
+        .get(apiEndpointPath)
+        .send({ text: 'Kim loves going  to the  cinema' })
+        .set('Accept', 'application/json')
+        .expect(200, expectedResponse)
+        .end((err) => {
+          if (err) {
+            return done(err)
+          }
+
+          return done()
+        })
+    })
+
+    it('should return the lexical density for each sentence', (done) => {
+      results = [{
+        _id: 1321, word: 'the'
+      }, {
+        _id: 432, word: 'to'
+      }]
+
+      const queryString = '?mode=verbose&text=Kim loves going  to the  cinema'
+      const url = `${apiEndpointPath + queryString}`
+
+      const expectedResponse = {
+        data: {
+          sentence_ld: ['0.67'],
+          overall_ld: '0.67'
         }
+      }
 
-        return done()
-      })
+      request(app)
+        .get(url)
+        .set('Accept', 'application/json')
+        .expect(200, expectedResponse)
+        .end((err) => {
+          if (err) {
+            return done(err)
+          }
+
+          return done()
+        })
+    })
   })
 
-  it('should return a Internal Server Error', (done) => {
-    errorStub = new Error('Error on MongoDB')
+  context('when an error occurs', () => {
+    it('should return a HTTP 422 response', (done) => {
+      const exprectedError = {
+        error: 'Unprocessable Entity',
+        message: 'Invalid input text'
+      }
 
-    const exprectedError = {
-      error: 'Error on MongoDB',
-      message: 'Internal Server Error'
-    }
+      request(app)
+        .get(apiEndpointPath)
+        .set('Accept', 'application/json')
+        .expect(422, exprectedError)
+        .end((err) => {
+          if (err) {
+            return done(err)
+          }
 
-    const queryString = '?mode=verbose&text=Kim loves going  to the  cinema'
-    const url = `${apiEndpointPath + queryString}`
+          return done()
+        })
+    })
 
-    request(app)
-      .get(url)
-      .set('Accept', 'application/json')
-      .expect(500, exprectedError)
-      .end((err) => {
-        if (err) {
-          return done(err)
-        }
+    it('should return a Internal Server Error', (done) => {
+      errorStub = new Error('Error on MongoDB')
 
-        return done()
-      })
+      const exprectedError = {
+        error: 'Error on MongoDB',
+        message: 'Internal Server Error'
+      }
+
+      const queryString = '?mode=verbose&text=Kim loves going  to the  cinema'
+      const url = `${apiEndpointPath + queryString}`
+
+      request(app)
+        .get(url)
+        .set('Accept', 'application/json')
+        .expect(500, exprectedError)
+        .end((err) => {
+          if (err) {
+            return done(err)
+          }
+
+          return done()
+        })
+    })
   })
 })
