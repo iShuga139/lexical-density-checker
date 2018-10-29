@@ -1,6 +1,6 @@
 {
   "name": "lexical-density-checker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "RESTful API that calculate the lexical density from input text.",
   "main": "index.js",
   "scripts": {
