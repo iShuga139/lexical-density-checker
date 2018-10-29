@@ -47,7 +47,12 @@ initializeApp()
     process.once('SIGINT', emitShutdown)
     process.once('SIGTERM', emitShutdown)
 
-    process.on('uncaughtException', emitShutdown)
+    const uncaughtExceptionHandler = (error) => {
+      logger.error('Oops, something happened ', error)
+      process.exit(1)
+    }
+
+    process.on('uncaughtException', uncaughtExceptionHandler)
   })
   .catch((error) => {
     const logger = winston.createLogger({

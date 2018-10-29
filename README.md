@@ -25,7 +25,7 @@ RESTful API that calculate the lexical density from input text.
   ```
 
 3. Dependencies:
-  - MongoDB (required)
+  - MongoDB (required at default port: 27017)
 
 4. Run the application:
 
