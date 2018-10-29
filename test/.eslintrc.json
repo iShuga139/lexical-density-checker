@@ -1,0 +1,11 @@
+{
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "global-require": "off",
+    "no-unused-expressions": "off",
+    "max-len": "off",
+    "no-param-reassign": "off"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "server": {
+    "port": 4000
+  },
+  "tls": {
+    "enabled": false,
+    "keyPath": "",
+    "certPath": ""
+  },
+  "database": {
+    "url": ""
+  }
+}

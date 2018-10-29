@@ -1,0 +1,53 @@
+{
+  "name": "lexical-density-checker",
+  "version": "0.0.0",
+  "description": "RESTful API that calculate the lexical density from input text.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "coverage": "nyc mocha",
+    "test": "mocha",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "coverage:open": "open ./coverage/lcov-report/index.html",
+    "clean:install": "rm -rf node_modules && npm install"
+  },
+  "keywords": [
+    "lexical",
+    "density",
+    "api",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "Jonathan Estrada <jeaworks@hotmail.com>",
+  "contributors": [],
+  "license": "ISC",
+  "engines": {
+    "node": "^8"
+  },
+  "devDependencies": {
+    "chai": "~4.2.0",
+    "eslint": "~5.6.1",
+    "eslint-config-standard": "~12.0.0",
+    "eslint-plugin-import": "~2.14.0",
+    "eslint-plugin-node": "~7.0.1",
+    "eslint-plugin-promise": "~4.0.1",
+    "eslint-plugin-standard": "~4.0.0",
+    "fraudster": "~1.1.0",
+    "mocha": "~5.2.0",
+    "nyc": "~13.1.0",
+    "sinon": "~7.1.0",
+    "supertest": "~3.3.0"
+  },
+  "dependencies": {
+    "bluebird": "~3.5.2",
+    "body-parser": "~1.18.3",
+    "cors": "~2.8.4",
+    "express": "~4.16.4",
+    "lodash.reject": "~4.6.0",
+    "mongodb": "~3.1.8",
+    "sentence-tokenizer": "~1.0.0",
+    "winston": "~3.1.0"
+  }
+}
