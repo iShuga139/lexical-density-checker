@@ -1,6 +1,6 @@
 {
   "name": "lexical-density-checker",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "RESTful API that calculate the lexical density from input text.",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   ],
   "author": "Jonathan Estrada <jeaworks@hotmail.com>",
   "contributors": [],
-  "license": "ISC",
+  "license": "MIT",
   "engines": {
     "node": "^8"
   },
